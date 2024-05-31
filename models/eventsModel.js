@@ -55,6 +55,30 @@ class Event {
 
         return events;
     }
+    static createNewEvent(data){
+        const newEvent = new Event(
+            data.id,
+            data.title,
+            data.description,
+            data.date,
+            data.maxSeats,
+        );
+        return newEvent;
+    }
+    static updateEventById(id, newData){
+        const eventToUpdate = this.getById(id);
+        if(!eventToUpdate) {
+            throw new Error('evento non trovato');
+        }
+        Object.assign(eventToUpdate, newData);
+
+        let events = this.getAll();
+        events = events.map(event => (event.id === id ? eventToUpdate : event));
+
+        this.writeJSON('events', events);
+
+        return eventToUpdate
+    }
 }
 
 
