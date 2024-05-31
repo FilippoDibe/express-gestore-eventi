@@ -1,5 +1,7 @@
 const path = require("path");
 const fs = require("fs");
+const errorHandler = require("../middleware/errorHandler");
+const notFound = require("../middleware/notFound");
 
 class Event {
     constructor( id, title, description, date, maxSeats){
@@ -83,3 +85,7 @@ class Event {
 
 
 module.exports= Event;
+
+
+
+
